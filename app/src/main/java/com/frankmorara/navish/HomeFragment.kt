@@ -12,6 +12,8 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
     lateinit var binding: FragmentHomeBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        setHasOptionsMenu(true)
         binding.buttonContinue.setOnClickListener {
 //         findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
