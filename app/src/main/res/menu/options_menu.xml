@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:title="Terms"
+            android:menuCategory="secondary"
+            android:id="@+id/termsFragment"/>
+    <item
+            android:title="Exit"
+            android:menuCategory="secondary"
+            android:id="@+id/exitFragment"/>
+    <item
+            android:title="Settings"
+            android:menuCategory="secondary"
+            android:id="@+id/settingsFragment"/>
+</menu>
