@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
@@ -21,14 +23,15 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-        val sendIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
-            type = "text/plain"
-        }
+//        val sendIntent: Intent = Intent().apply {
+//            action = Intent.ACTION_SEND
+//            putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+//            type = "text/plain"
+//        }
+//
+//        val shareIntent = Intent.createChooser(sendIntent, null)
+//        startActivity(shareIntent)
 
-        val shareIntent = Intent.createChooser(sendIntent, null)
-        startActivity(shareIntent)
 
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.homeFragment, R.id.searchFragment),
@@ -40,6 +43,14 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(navController)
         binding.navDrawer.setupWithNavController(navController)
 
+//        Preventing the nav drawer from sliding out except from the home fragment
+        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+            if (nd.id == nc.graph.startDestination) {
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            } else {
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+        }
         setContentView(binding.root)
     }
 
